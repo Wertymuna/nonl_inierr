@@ -1,0 +1,27 @@
+def f(x):
+    return x**3 - x + 3 - 4
+
+def df(x):
+    return 3*x**2 - 1
+
+def newton_raphson(initial_guess, tolerance=1e-6, max_iterations=100):
+    x = initial_guess
+    iteration = 0
+
+    while abs(f(x)) > tolerance and iteration < max_iterations:
+        x = x - f(x) / df(x)
+        iteration += 1
+
+    if abs(f(x)) <= tolerance:
+        return x
+    else:
+        raise ValueError("Metode Newton-Raphson tidak konvergen.")
+
+# Tentukan tebakan awal
+initial_guess = 1.0
+
+# Panggil fungsi Newton-Raphson
+result = newton_raphson(initial_guess)
+
+# Tampilkan hasil
+print("Nilai x yang memenuhi persamaan adalah:", result)
